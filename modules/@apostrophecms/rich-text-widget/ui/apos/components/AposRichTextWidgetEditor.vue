@@ -43,7 +43,6 @@ import {
 import StarterKit from '@tiptap/starter-kit';
 import TextAlign from '@tiptap/extension-text-align';
 import Highlight from '@tiptap/extension-highlight';
-import TextStyle from '@tiptap/extension-text-style';
 import Underline from '@tiptap/extension-underline';
 export default {
   name: 'AposRichTextWidgetEditor',
@@ -181,12 +180,14 @@ export default {
       autofocus: this.autofocus,
       onUpdate: this.editorUpdate,
       extensions: [
-        StarterKit,
+        StarterKit.configure({
+          document: false,
+          heading: false
+        }),
         TextAlign.configure({
           types: [ 'heading', 'paragraph' ]
         }),
         Highlight,
-        TextStyle,
         Underline
       ].concat(this.aposTiptapExtensions)
     });
